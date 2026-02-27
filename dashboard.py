@@ -178,6 +178,10 @@ def display_resource_card(resource):
 
 
 def main():
+    # 세션 상태 초기화
+    if 'current_page' not in st.session_state:
+        st.session_state.current_page = 1
+
     # 헤더
     st.markdown('<div class="main-header">🎮 Minecraft Education 리소스 대시보드</div>', unsafe_allow_html=True)
     st.markdown("---")
@@ -226,10 +230,10 @@ def main():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.plotly_chart(create_type_chart(stats), use_container_width=True)
+        st.plotly_chart(create_type_chart(stats), width='stretch')
 
     with col2:
-        st.plotly_chart(create_subject_chart(stats), use_container_width=True)
+        st.plotly_chart(create_subject_chart(stats), width='stretch')
 
     st.markdown("---")
 
@@ -295,27 +299,95 @@ def main():
     # 리소스 목록
     st.header(f"📚 리소스 목록 ({len(filtered_df)}개)")
 
-    # 페이지네이션
+    # 페이지네이션 설정
     items_per_page = st.sidebar.slider("페이지당 항목 수", 5, 50, 10)
-    total_pages = (len(filtered_df) - 1) // items_per_page + 1
+    total_pages = max(1, (len(filtered_df) - 1) // items_per_page + 1) if len(filtered_df) > 0 else 1
 
-    if total_pages > 0:
-        page = st.sidebar.number_input(
-            "페이지",
-            min_value=1,
-            max_value=total_pages,
-            value=1
-        )
+    # 현재 페이지 범위 확인
+    if st.session_state.current_page > total_pages:
+        st.session_state.current_page = 1
 
-        start_idx = (page - 1) * items_per_page
+    if len(filtered_df) > 0:
+        start_idx = (st.session_state.current_page - 1) * items_per_page
         end_idx = start_idx + items_per_page
 
         # 리소스 표시
         for idx, resource in filtered_df.iloc[start_idx:end_idx].iterrows():
             display_resource_card(resource.to_dict())
 
-        # 페이지 정보
-        st.sidebar.info(f"📄 페이지 {page} / {total_pages}")
+        # 페이지네이션 UI (화면 하단)
+        st.markdown("---")
+
+        # 페이지네이션 컨테이너
+        pagination_container = st.container()
+
+        with pagination_container:
+            # 페이지 정보 표시
+            st.markdown(f"""
+                <div style="text-align: center; color: #666; margin-bottom: 1rem;">
+                    페이지 {st.session_state.current_page} / {total_pages} (총 {len(filtered_df)}개 리소스)
+                </div>
+            """, unsafe_allow_html=True)
+
+            # 페이지 버튼들
+            max_buttons = 10  # 최대 표시할 페이지 번호
+
+            # 페이지 범위 계산
+            if total_pages <= max_buttons:
+                start_page = 1
+                end_page = total_pages
+            else:
+                # 현재 페이지를 중심으로
+                half = max_buttons // 2
+                start_page = max(1, st.session_state.current_page - half)
+                end_page = min(total_pages, start_page + max_buttons - 1)
+
+                # 끝에 도달하면 시작점 조정
+                if end_page - start_page < max_buttons - 1:
+                    start_page = max(1, end_page - max_buttons + 1)
+
+            # 버튼 레이아웃
+            cols = st.columns([1, 1, 10, 1, 1])
+
+            # 처음으로 버튼
+            with cols[0]:
+                if st.button("⏮️ 처음", disabled=(st.session_state.current_page == 1), key="first"):
+                    st.session_state.current_page = 1
+                    st.rerun()
+
+            # 이전 버튼
+            with cols[1]:
+                if st.button("◀️ 이전", disabled=(st.session_state.current_page == 1), key="prev"):
+                    st.session_state.current_page -= 1
+                    st.rerun()
+
+            # 페이지 번호 버튼들
+            with cols[2]:
+                page_cols = st.columns(min(max_buttons, end_page - start_page + 1))
+
+                for i, page_num in enumerate(range(start_page, end_page + 1)):
+                    with page_cols[i]:
+                        button_type = "primary" if page_num == st.session_state.current_page else "secondary"
+                        if st.button(
+                            str(page_num),
+                            key=f"page_{page_num}",
+                            type=button_type,
+                            use_container_width=True
+                        ):
+                            st.session_state.current_page = page_num
+                            st.rerun()
+
+            # 다음 버튼
+            with cols[3]:
+                if st.button("다음 ▶️", disabled=(st.session_state.current_page == total_pages), key="next"):
+                    st.session_state.current_page += 1
+                    st.rerun()
+
+            # 마지막으로 버튼
+            with cols[4]:
+                if st.button("마지막 ⏭️", disabled=(st.session_state.current_page == total_pages), key="last"):
+                    st.session_state.current_page = total_pages
+                    st.rerun()
     else:
         st.info("검색 결과가 없습니다.")
 
