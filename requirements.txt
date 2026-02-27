@@ -8,5 +8,8 @@ plotly>=5.18.0
 # Data Processing
 pandas>=2.2.0
 
+# AI Chatbot
+google-generativeai>=0.3.0
+
 # Note: For full development (crawlers, database, etc.)
 # see requirements-full.txt
