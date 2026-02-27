@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../library-minecraft-redirection"
 		}
 	],
 	"settings": {}
