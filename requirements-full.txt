@@ -1,0 +1,33 @@
+# Full Development Dependencies
+# For crawling, database operations, and development
+
+# Web Scraping
+playwright==1.41.1
+beautifulsoup4==4.12.3
+lxml==5.1.0
+
+# Database
+aiosqlite==0.19.0
+
+# Data Processing
+pandas==2.2.0
+python-dateutil==2.8.2
+
+# HTTP
+httpx==0.26.0
+requests==2.31.0
+
+# Utilities
+python-dotenv==1.0.1
+tqdm==4.66.1
+
+# Data Validation
+pydantic==2.5.3
+
+# Visualization & Dashboard
+streamlit==1.31.0
+plotly==5.18.0
+
+# Testing (optional)
+pytest==8.0.0
+pytest-asyncio==0.23.3

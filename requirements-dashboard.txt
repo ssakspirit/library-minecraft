@@ -1,0 +1,11 @@
+# Dashboard Only - Minimal Dependencies
+# For Streamlit Cloud deployment
+
+# Visualization & Dashboard
+streamlit>=1.31.0
+plotly>=5.18.0
+
+# Data Processing
+pandas>=2.2.0
+
+# No other dependencies needed for dashboard!

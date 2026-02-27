@@ -23,7 +23,8 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\n🎉 Initial commit: Minecraft Education 리소스 크롤러 및 대시보드\n\n주요 기능:\n- 🕷️ HTML 파서로 1,123개 리소스 수집\n- 💾 SQLite 데이터베이스 구축 \\(FTS5 전체 텍스트 검색\\)\n- 🔍 추천 시스템 \\(키워드, 과목, 타입 필터링\\)\n- 📊 Streamlit 인터랙티브 대시보드\n- 🌐 Playwright 기반 상세 크롤러 \\(개발 완료\\)\n\n데이터:\n- 총 리소스: 1,123개\n- World: 55개, Lesson: 992개, Challenge: 76개\n- 과목: Computer Science, Math, Science, Arts 등 9개\n\n기술 스택:\n- Python 3.13+\n- SQLite with FTS5\n- Streamlit + Plotly\n- Playwright\n- Pandas\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\n🚀 Streamlit Cloud 배포 준비 완료\n\n추가 사항:\n- Streamlit 및 Plotly를 requirements.txt에 추가\n- STREAMLIT_DEPLOY.md 상세 배포 가이드 작성\n- DEPLOY.md 배포 옵션 비교 문서 작성\n\n배포 준비 완료:\n- ✅ requirements.txt 업데이트\n- ✅ .streamlit/config.toml 설정\n- ✅ data/resources.json 포함\n- ✅ 배포 가이드 문서화\n\n다음 단계:\n1. https://streamlit.io/cloud 방문\n2. GitHub 계정으로 로그인\n3. New app 클릭\n4. Repository: ssakspirit/library-minecraft\n5. Main file: dashboard.py\n6. Deploy!\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
