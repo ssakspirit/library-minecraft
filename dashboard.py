@@ -185,7 +185,7 @@ def init_gemini():
         if not api_key:
             return None
         genai.configure(api_key=api_key)
-        return genai.GenerativeModel('gemini-1.5-flash')
+        return genai.GenerativeModel('gemini-2.5-flash')
     except Exception as e:
         st.error(f"Gemini API 초기화 실패: {e}")
         return None
