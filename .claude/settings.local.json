@@ -19,7 +19,11 @@
       "Bash(python -m streamlit:*)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\n🎉 Initial commit: Minecraft Education 리소스 크롤러 및 대시보드\n\n주요 기능:\n- 🕷️ HTML 파서로 1,123개 리소스 수집\n- 💾 SQLite 데이터베이스 구축 \\(FTS5 전체 텍스트 검색\\)\n- 🔍 추천 시스템 \\(키워드, 과목, 타입 필터링\\)\n- 📊 Streamlit 인터랙티브 대시보드\n- 🌐 Playwright 기반 상세 크롤러 \\(개발 완료\\)\n\n데이터:\n- 총 리소스: 1,123개\n- World: 55개, Lesson: 992개, Challenge: 76개\n- 과목: Computer Science, Math, Science, Arts 등 9개\n\n기술 스택:\n- Python 3.13+\n- SQLite with FTS5\n- Streamlit + Plotly\n- Playwright\n- Pandas\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(cat:*)"
     ]
   }
 }
