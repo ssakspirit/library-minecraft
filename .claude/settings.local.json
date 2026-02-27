@@ -31,7 +31,9 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\n🏷️ 브라우저 탭 제목을 ''minecraft library''로 변경\n\n변경사항:\n- page_title을 \"Minecraft Education 대시보드\"에서 \"minecraft library\"로 수정\n- 브라우저 탭에서 더 간결하고 명확한 제목 표시\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit -m \"$\\(cat <<''EOF''\n🤖 AI 챗봇 기능 추가 - Gemini API 연동\n\n주요 기능:\n- 📚 리소스 탐색 / 🤖 AI 추천 탭 분리\n- Gemini Pro API를 활용한 자연어 리소스 추천\n- 대화형 인터페이스 \\(채팅 기록 저장\\)\n- 리소스 데이터를 컨텍스트로 제공하여 맞춤 추천\n\n기술 스택:\n- google-generativeai>=0.3.0 추가\n- Streamlit chat 기능 활용\n- 세션 상태로 대화 기록 관리\n\n사용 방법:\n- Gemini API 키 발급: https://makersuite.google.com/app/apikey\n- .streamlit/secrets.toml에 GEMINI_API_KEY 추가\n- 상세한 설정 방법은 GEMINI_API_SETUP.md 참고\n\n예시 질문:\n- \"초등학생용 코딩 수업 자료 추천해줘\"\n- \"수학과 과학을 융합한 Challenge 찾아줘\"\n- \"아트와 역사를 배울 수 있는 World 추천\"\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(if not exist .streamlit mkdir .streamlit)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebSearch",
+      "Bash(python test_gemini_models.py:*)"
     ]
   }
 }
