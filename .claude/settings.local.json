@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:education.minecraft.net)",
+      "Bash(python parse_html.py:*)",
+      "Bash(pip install:*)",
+      "Bash(set:*)",
+      "Bash(python -c \"import json; data = json.load\\(open\\(''data/resources.json'', ''r'', encoding=''utf-8''\\)\\); print\\(''Sample resource:''\\); print\\(json.dumps\\(data[10], indent=2, ensure_ascii=False\\)[:1000]\\)\")",
+      "Bash(python -c:*)",
+      "Bash(python analyze_data.py:*)",
+      "Bash(python -m playwright:*)",
+      "Bash(where:*)",
+      "Bash(C:UsersssaksAppDataLocalMicrosoftWindowsAppspython.exe -m pip install playwright)",
+      "Bash(python -m pip:*)",
+      "Bash(python enhanced_crawler.py:*)",
+      "Bash(python fetch_full_text.py:*)",
+      "Bash(python check_text.py:*)",
+      "Bash(python playwright_text_fetcher.py:*)",
+      "Bash(python -m streamlit:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

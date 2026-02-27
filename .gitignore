@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Data files (too large for git)
+data/minecraft_education.db
+data/resources_with_text.json
+
+# Keep structure but ignore large data
+!data/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+.tmp/
+
+# Large HTML files
+minecraft-education-dashboard.html
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Commit message file
+.commit_message.txt
+
+# But keep the main resources.json
+!data/resources.json
