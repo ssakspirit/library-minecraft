@@ -113,9 +113,9 @@ def enhance_resources(limit=10, resume=False):
             # 이미 처리된 리소스 찾기 (thumbnail_url이 있으면 처리됨)
             processed_urls = {r['url'] for r in enhanced_data if r.get('thumbnail_url')}
 
-            print(f"📚 총 {len(resources)}개 리소스")
-            print(f"✅ 이미 처리됨: {len(processed_urls)}개")
-            print(f"⏳ 남은 작업: {len(resources) - len(processed_urls)}개\n")
+            print(f"📚 총 {len(resources)}개 리소스", flush=True)
+            print(f"✅ 이미 처리됨: {len(processed_urls)}개", flush=True)
+            print(f"⏳ 남은 작업: {len(resources) - len(processed_urls)}개\n", flush=True)
 
             # 기존 enhanced 데이터로 시작
             resources = enhanced_data
@@ -124,11 +124,11 @@ def enhance_resources(limit=10, resume=False):
             resume = False
 
     if not resume:
-        print(f"📚 총 {len(resources)}개 리소스")
+        print(f"📚 총 {len(resources)}개 리소스", flush=True)
         if limit:
-            print(f"🔍 처음 {limit}개만 처리합니다.\n")
+            print(f"🔍 처음 {limit}개만 처리합니다.\n", flush=True)
         else:
-            print(f"🔍 전체 {len(resources)}개를 처리합니다.\n")
+            print(f"🔍 전체 {len(resources)}개를 처리합니다.\n", flush=True)
 
     # Playwright 시작
     with sync_playwright() as p:
@@ -165,41 +165,47 @@ def enhance_resources(limit=10, resume=False):
                 skipped_count += 1
                 continue
 
-            print(f"[{idx}/{total_to_process}] {resource['title'][:60]}")
-            print(f"   URL: {url}")
+            print(f"[{idx}/{total_to_process}] {resource['title'][:60]}", flush=True)
+            print(f"   URL: {url}", flush=True)
 
             info = extract_all_info(page, url)
 
             if info:
                 if info.get('thumbnail_url'):
                     resource['thumbnail_url'] = info['thumbnail_url']
-                    print(f"   ✅ Thumbnail: {info['thumbnail_url'][:60]}...")
+                    print(f"   ✅ Thumbnail: {info['thumbnail_url'][:60]}...", flush=True)
 
                 if info.get('tags'):
                     resource['tags'] = ', '.join(info['tags'])
-                    print(f"   ✅ Tags: {resource['tags']}")
+                    print(f"   ✅ Tags: {resource['tags']}", flush=True)
 
                 if info.get('ages'):
                     resource['ages'] = info['ages']
-                    print(f"   ✅ Ages: {info['ages']}")
+                    print(f"   ✅ Ages: {info['ages']}", flush=True)
 
                 if info.get('submitted_by'):
                     resource['submitted_by'] = info['submitted_by']
-                    print(f"   ✅ Submitted by: {info['submitted_by']}")
+                    print(f"   ✅ Submitted by: {info['submitted_by']}", flush=True)
 
                 if info.get('updated'):
                     resource['updated'] = info['updated']
-                    print(f"   ✅ Updated: {info['updated']}")
+                    print(f"   ✅ Updated: {info['updated']}", flush=True)
 
                 if info.get('available_languages'):
                     resource['available_languages'] = info['available_languages']
-                    print(f"   ✅ Languages: {info['available_languages'][:50]}")
+                    print(f"   ✅ Languages: {info['available_languages'][:50]}", flush=True)
 
                 enhanced_count += 1
-            else:
-                print(f"   ⚠️ 정보 추출 실패")
 
-            print()
+                # 5개마다 중간 저장
+                if enhanced_count % 5 == 0:
+                    with open('data/resources_enhanced.json', 'w', encoding='utf-8') as f:
+                        json.dump(resources, f, ensure_ascii=False, indent=2)
+                    print(f"   💾 중간 저장 완료 ({enhanced_count}개 처리됨)", flush=True)
+            else:
+                print(f"   ⚠️ 정보 추출 실패", flush=True)
+
+            print(flush=True)
             time.sleep(1)  # 대기 시간 단축
 
         context.close()
@@ -209,14 +215,14 @@ def enhance_resources(limit=10, resume=False):
     with open('data/resources_enhanced.json', 'w', encoding='utf-8') as f:
         json.dump(resources, f, ensure_ascii=False, indent=2)
 
-    print("\n" + "=" * 60)
-    print(f"✅ 완료!")
+    print("\n" + "=" * 60, flush=True)
+    print(f"✅ 완료!", flush=True)
     if resume:
-        print(f"   건너뜀: {skipped_count}개 (이미 처리됨)")
-    print(f"   처리 시도: {total_to_process - skipped_count}개")
-    print(f"   성공: {enhanced_count}개")
-    print(f"   저장: data/resources_enhanced.json")
-    print("=" * 60)
+        print(f"   건너뜀: {skipped_count}개 (이미 처리됨)", flush=True)
+    print(f"   처리 시도: {total_to_process - skipped_count}개", flush=True)
+    print(f"   성공: {enhanced_count}개", flush=True)
+    print(f"   저장: data/resources_enhanced.json", flush=True)
+    print("=" * 60, flush=True)
 
 
 if __name__ == "__main__":
@@ -228,12 +234,12 @@ if __name__ == "__main__":
     # --all 옵션 확인
     if '--all' in sys.argv:
         if resume:
-            print("🔄 중단된 크롤링 재개 (남은 리소스만 처리)")
-            print()
+            print("🔄 중단된 크롤링 재개 (남은 리소스만 처리)", flush=True)
+            print(flush=True)
         else:
-            print("🚀 전체 리소스 크롤링 시작 (1,123개)")
-            print("⏱️ 예상 소요 시간: 약 1.5시간")
-            print()
+            print("🚀 전체 리소스 크롤링 시작 (1,123개)", flush=True)
+            print("⏱️ 예상 소요 시간: 약 1.5시간", flush=True)
+            print(flush=True)
         enhance_resources(limit=None, resume=resume)
     else:
         enhance_resources(limit=10, resume=False)
