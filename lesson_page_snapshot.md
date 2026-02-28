@@ -1,0 +1,490 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e8]:
+      - link "Skip to main content" [ref=e9] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e10]:
+        - generic [ref=e13]:
+          - search [ref=e14]:
+            - textbox "Search" [ref=e15]:
+              - /placeholder: Search for lessons, blog articles, and support
+            - button "Search" [ref=e16] [cursor=pointer]
+          - link "Support" [ref=e17] [cursor=pointer]:
+            - /url: https://aka.ms/meesupport
+          - link "Blog" [ref=e18] [cursor=pointer]:
+            - /url: /en-us/blog
+          - link "Sign In" [ref=e19] [cursor=pointer]:
+            - /url: /api/edu/login
+            - text: Sign In
+        - navigation [ref=e23]:
+          - link "Minecraft Education" [ref=e25] [cursor=pointer]:
+            - /url: /en-us
+            - img [ref=e26]
+          - list [ref=e29]:
+            - listitem [ref=e30]:
+              - button "how it works":
+                - text: how it works
+                - img
+            - listitem [ref=e31]:
+              - button "Teach with Minecraft":
+                - text: Teach with Minecraft
+                - img
+          - link "Download Minecraft Education" [ref=e33] [cursor=pointer]:
+            - /url: /en-us/get-started/download
+            - generic [ref=e34]: Download Minecraft
+            - img [ref=e35]
+    - main [ref=e40]:
+      - generic [ref=e45]:
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - 'heading "Cyber Fundamentals 3: Cloud Champions" [level=1] [ref=e235]'
+            - paragraph [ref=e236]: "Unlock digital enigmas using passwords, face scans, and unique keycards as you join forces with cyber experts. Cyber Fundamentals 2: The Interceptors is part of the K-12 cybersecurity progression."
+            - link "Open in Minecraft" [ref=e237] [cursor=pointer]:
+              - /url: https://education.minecraft.net/world/df696320-f7e9-43ed-81f0-96db5a4eed8a
+            - generic [ref=e238]: subjects
+            - list [ref=e239]:
+              - listitem [ref=e240]:
+                - link "subject group Technology" [ref=e241] [cursor=pointer]:
+                  - /url: /en-us/search?search=&subjects=Technology
+                  - text: Technology
+              - listitem [ref=e242]:
+                - link "subject group Digital Literacy" [ref=e243] [cursor=pointer]:
+                  - /url: /en-us/search?search=&subjects=Digital+Literacy
+                  - text: Digital Literacy
+              - listitem [ref=e244]:
+                - link "subject group Computer Science" [ref=e245] [cursor=pointer]:
+                  - /url: /en-us/search?search=&subjects=Computer+Science
+                  - text: Computer Science
+            - generic [ref=e246]: ages
+            - list [ref=e247]:
+              - listitem [ref=e248]:
+                - link "age group 8-10" [ref=e249] [cursor=pointer]:
+                  - /url: /en-us/search?search=&ages=8-10
+                  - text: 8-10
+              - listitem [ref=e250]:
+                - link "age group 11-13" [ref=e251] [cursor=pointer]:
+                  - /url: /en-us/search?search=&ages=11-13
+                  - text: 11-13
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - button "share" [ref=e55] [cursor=pointer]:
+                - img "share" [ref=e56]
+              - button "print" [ref=e57] [cursor=pointer]:
+                - img "print" [ref=e58]
+            - 'link "Cyber Fundamentals 3: Cloud Champions" [ref=e252] [cursor=pointer]':
+              - /url: https://youtu.be/a9MRjjUTsfs
+              - 'generic "Cyber Fundamentals 3: Cloud Champions" [ref=e254]':
+                - img [ref=e255]
+            - generic [ref=e63]:
+              - paragraph [ref=e64]:
+                - text: "Submitted by:"
+                - link "Minecraft Education" [ref=e257] [cursor=pointer]:
+                  - /url: /user/meeadmin
+              - paragraph [ref=e65]: "Updated: 10월 26, 2023"
+          - generic [ref=e66]:
+            - generic [ref=e258]: Available languages
+            - list [ref=e259]:
+              - listitem [ref=e260]:
+                - link "language group English" [ref=e261] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=English
+                  - text: English
+              - listitem [ref=e262]:
+                - link "language group Bulgarian" [ref=e263] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D1%81%D0%BA%D0%B8
+                  - text: Български
+              - listitem [ref=e264]:
+                - link "language group Chinese Trad. (HK, SAR)" [ref=e265] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87
+                  - text: 繁體中文
+              - listitem [ref=e266]:
+                - link "language group Czech" [ref=e267] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%C4%8Ce%C5%A1tina
+                  - text: Čeština
+              - listitem [ref=e268]:
+                - link "language group Danish" [ref=e269] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Dansk
+                  - text: Dansk
+              - listitem [ref=e270]:
+                - link "language group Dutch" [ref=e271] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Nederlands
+                  - text: Nederlands
+              - listitem [ref=e272]:
+                - link "language group English (UK)" [ref=e273] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=English+%28UK%29
+                  - text: English (UK)
+              - listitem [ref=e274]:
+                - link "language group Finnish" [ref=e275] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Suomi
+                  - text: Suomi
+              - listitem [ref=e276]:
+                - link "language group French (Canada)" [ref=e277] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Fran%C3%A7ais+%28Canada%29
+                  - text: Français (Canada)
+              - listitem [ref=e278]:
+                - link "language group German" [ref=e279] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Deutsch
+                  - text: Deutsch
+              - listitem [ref=e280]:
+                - link "language group Greek" [ref=e281] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%CE%95%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AC
+                  - text: Ελληνικά
+              - listitem [ref=e282]:
+                - link "language group Hungarian" [ref=e283] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Magyar
+                  - text: Magyar
+              - listitem [ref=e284]:
+                - link "language group Indonesian" [ref=e285] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Bahasa+Indonesia
+                  - text: Bahasa Indonesia
+              - listitem [ref=e286]:
+                - link "language group Italian" [ref=e287] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Italiano
+                  - text: Italiano
+              - listitem [ref=e288]:
+                - link "language group Japanese" [ref=e289] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%E6%97%A5%E6%9C%AC%E8%AA%9E
+                  - text: 日本語
+              - listitem [ref=e290]:
+                - link "language group Korean" [ref=e291] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%ED%95%9C%EA%B5%AD%EC%96%B4
+                  - text: 한국어
+              - listitem [ref=e292]:
+                - link "language group Polish" [ref=e293] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Polski
+                  - text: Polski
+              - listitem [ref=e294]:
+                - link "language group Portuguese (Brazil)" [ref=e295] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Portugu%C3%AAs+%28Brasil%29
+                  - text: Português (Brasil)
+              - listitem [ref=e296]:
+                - link "language group Portuguese (Portugal)" [ref=e297] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Portugu%C3%AAs
+                  - text: Português
+              - listitem [ref=e298]:
+                - link "language group Russian" [ref=e299] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9
+                  - text: Русский
+              - listitem [ref=e300]:
+                - link "language group Slovak" [ref=e301] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Sloven%C4%8Dina
+                  - text: Slovenčina
+              - listitem [ref=e302]:
+                - link "language group Spanish" [ref=e303] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Espa%C3%B1ol
+                  - text: Español
+              - listitem [ref=e304]:
+                - link "language group Spanish (Mexico)" [ref=e305] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Espa%C3%B1ol+%28M%C3%A9xico%29
+                  - text: Español (México)
+              - listitem [ref=e306]:
+                - link "language group Swedish" [ref=e307] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Svenska
+                  - text: Svenska
+              - listitem [ref=e308]:
+                - link "language group Turkish" [ref=e309] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=T%C3%BCrk%C3%A7e
+                  - text: Türkçe
+              - listitem [ref=e310]:
+                - link "language group Ukrainian" [ref=e311] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D1%81%D1%8C%D0%BA%D0%B0
+                  - text: Українська
+              - listitem [ref=e312]:
+                - link "language group Chinese (Simplified)" [ref=e313] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87
+                  - text: 简体中文
+              - listitem [ref=e314]:
+                - link "language group French (France)" [ref=e315] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Fran%C3%A7ais
+                  - text: Français
+              - listitem [ref=e316]:
+                - link "language group Norwegian" [ref=e317] [cursor=pointer]:
+                  - /url: /en-us/search?search=&languages=Norsk
+                  - text: Norsk
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - generic [ref=e318]:
+              - heading "Learning objectives" [level=2] [ref=e319]
+              - generic [ref=e321]:
+                - paragraph [ref=e322]: THEME Overview
+                - paragraph [ref=e323]:
+                  - strong [ref=e324]: Cyber FUNdamentals is part of the K-12 cybersecurity progression in Minecraft Education.
+                  - text: These lessons are designed for Lower Secondary | Grades 6-8 | Ages 11-14. Cyber FUNdamentals consists of three units, which each contain multiple lessons covering various cybersecurity concepts.
+                - paragraph [ref=e325]:
+                  - strong [ref=e326]: This unit is Cloud Champions.
+                  - text: "This unit contains 2 lessons:"
+                - list [ref=e327]:
+                  - listitem [ref=e328]: Back-Up Data
+                  - listitem [ref=e329]: Big Bad’s Attack
+                - paragraph [ref=e330]:
+                  - strong [ref=e331]: Unit Objectives
+                - paragraph [ref=e332]: "By the end of this unit, students will be able to:"
+                - list [ref=e333]:
+                  - listitem [ref=e334]: Explain what is a digital footprint and actions that contribute to a digital footprint
+                  - listitem [ref=e335]: Describe how the 3-2-1 data storage method
+                  - listitem [ref=e336]: Explain the importance of backups
+                  - listitem [ref=e337]: Articulate the concept of the Internet of Things (IoT)
+                  - listitem [ref=e338]: Provide real examples of Internet of Things (IoT) devices
+                  - listitem [ref=e339]: Explain the risks and benefits of IoT devices
+                - paragraph [ref=e340]:
+                  - strong [ref=e341]:
+                    - text: Upon completion of this world, players will receive their
+                    - link "CyberFUNdamentals Certificate!" [ref=e342] [cursor=pointer]:
+                      - /url: https://aka.ms/CyberFUNdamentalsCertificate3
+            - heading "Student activities" [level=3] [ref=e344]:
+              - button "Student activities" [ref=e345] [cursor=pointer]:
+                - text: Student activities
+                - img [ref=e346]
+            - heading "Performance expectations" [level=3] [ref=e349]:
+              - button "Performance expectations" [ref=e350] [cursor=pointer]:
+                - text: Performance expectations
+                - img [ref=e351]
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - button "share" [ref=e74] [cursor=pointer]:
+                - img "share" [ref=e75]
+                - text: Share or assign
+              - link "download" [ref=e353] [cursor=pointer]:
+                - /url: https://education.minecraft.net/lessonsworldfile/0586280325284636-CyberFUNw3v1.0.1.mcworld
+                - img "download" [ref=e354]
+                - text: Download world
+              - button "print" [ref=e76] [cursor=pointer]:
+                - img "print" [ref=e77]
+                - text: Print
+            - generic [ref=e355]:
+              - heading "Skills" [level=2] [ref=e356]
+              - list [ref=e357]:
+                - listitem [ref=e358]: Citizenship
+                - listitem [ref=e359]: Critical thinking
+                - listitem [ref=e360]: Project Based Learning
+            - heading "Estimated time" [level=2] [ref=e362]
+            - paragraph [ref=e363]: 45 min
+            - generic [ref=e364]:
+              - heading "Supporting Files" [level=2] [ref=e365]
+              - list [ref=e366]:
+                - listitem [ref=e367]:
+                  - link "Download Educator Guide" [ref=e368] [cursor=pointer]:
+                    - /url: https://education.minecraft.net/lessonsupportfiles/4320024878948363-CyberFUNdamentals_Unit 3_EDU Guide.pdf
+                    - text: Educator Guide
+                  - generic [ref=e369]: Educator Guide - Lesson plan and Standards
+                - listitem [ref=e370]:
+                  - link "Download Presentation Slides" [ref=e371] [cursor=pointer]:
+                    - /url: https://education.minecraft.net/lessonsupportfiles/0869802071012654-CyberFUNdamentals_Unit 3_EDU Presentation.pptx
+                    - text: Presentation Slides
+                  - generic [ref=e372]: PowerPoint Presentation Slides
+                - listitem [ref=e373]:
+                  - link "Download Student Activities Workbook" [ref=e374] [cursor=pointer]:
+                    - /url: https://education.minecraft.net/lessonsupportfiles/1965855078549253-CyberFUNdamentals_Unit 3_Student Workbook.pdf
+                    - text: Student Activities Workbook
+                  - generic [ref=e375]: Student Activities Workbook
+                - listitem [ref=e376]:
+                  - link "Download Formative Assessment 1" [ref=e377] [cursor=pointer]:
+                    - /url: https://education.minecraft.net/lessonsupportfiles/7715118311381260-CyberFUNdamentals_Unit 3-Lesson 1_Knowledge Check.pdf
+                    - text: Formative Assessment 1
+                  - generic [ref=e378]: Formative Assessment 1
+                - listitem [ref=e379]:
+                  - link "Download Formative Assessment 2" [ref=e380] [cursor=pointer]:
+                    - /url: https://education.minecraft.net/lessonsupportfiles/3529615525295704-CyberFUNdamentals_Unit 3-Lesson 2_Knowledge Check.pdf
+                    - text: Formative Assessment 2
+                  - generic [ref=e381]: Formative Assessment 2
+                - listitem [ref=e382]:
+                  - link "Download Certificate" [ref=e383] [cursor=pointer]:
+                    - /url: https://education.minecraft.net/lessonsupportfiles/6745502012462784-EDU_CyberFundamentals_3_Certificate.pdf
+                    - text: Certificate
+                  - generic [ref=e384]: Certificate of Completion
+            - list [ref=e386]:
+              - listitem [ref=e387]:
+                - link "Download Download all" [ref=e388] [cursor=pointer]:
+                  - /url: /LessonZipFiles/cyber-fundamentals-3-cloud-champions_4204.zip
+                  - text: Download all
+    - contentinfo [ref=e84]:
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - navigation "Follow us!" [ref=e88]:
+            - heading "Follow us!" [level=2] [ref=e89]
+            - generic [ref=e90]:
+              - link "Follow us on LinkedIn" [ref=e92] [cursor=pointer]:
+                - /url: https://www.linkedin.com/showcase/playcraftlearn/
+              - link "Follow us on Facebook" [ref=e97] [cursor=pointer]:
+                - /url: https://www.facebook.com/playcraftlearn
+              - link "Follow us on X" [ref=e102] [cursor=pointer]:
+                - /url: https://twitter.com/PlayCraftLearn
+              - link "Follow us on YouTube" [ref=e107] [cursor=pointer]:
+                - /url: https://www.youtube.com/channel/UC2XjBkW16jGLGSEF9vo4PDA
+              - link "Follow us on Pinterest" [ref=e112] [cursor=pointer]:
+                - /url: https://www.pinterest.com/playcraftlearn/
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - img "Mojang Studios logo" [ref=e119]
+              - img "Xbox Game Studios Logo" [ref=e121]
+            - paragraph [ref=e123]: © 2026 Mojang AB. TM Microsoft Corporation.
+            - generic [ref=e124]:
+              - link "Mojang Brand and Asset Guidelines" [ref=e125] [cursor=pointer]:
+                - /url: https://www.minecraft.net/terms#terms-brand_guidelines
+              - link "Minecraft Education Usage Guidelines" [ref=e126] [cursor=pointer]:
+                - /url: https://aka.ms/EducationUsageGuidelines
+              - link "Minecraft Education Esports Guidelines" [ref=e127] [cursor=pointer]:
+                - /url: https://aka.ms/EsportsGuidelines
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - navigation "Resources for Minecraft Education" [ref=e131]:
+              - heading "Resources" [level=2] [ref=e132]:
+                - link "Resources" [ref=e133] [cursor=pointer]:
+                  - /url: /resources
+              - list [ref=e134]:
+                - listitem [ref=e135]:
+                  - link "Blog - Minecraft Education's official blog" [ref=e136] [cursor=pointer]:
+                    - /url: /en-us/blog
+                    - text: Blog
+                - listitem [ref=e137]:
+                  - link "Free Trial for Minecraft Education" [ref=e138] [cursor=pointer]:
+                    - /url: /en-us/get-started/download
+                    - text: Free Trial
+                - listitem [ref=e139]:
+                  - link "Minecraft shop" [ref=e140] [cursor=pointer]:
+                    - /url: https://shop.minecraft.net/
+                    - text: Minecraft Shop
+                - listitem [ref=e141]:
+                  - link "Newsletter Archive" [ref=e142] [cursor=pointer]:
+                    - /url: /en-us/newsletter-archive
+                - listitem [ref=e143]:
+                  - link "Site Map" [ref=e144] [cursor=pointer]:
+                    - /url: /en-us/sitemap
+            - navigation "Educators and Minecraft Education" [ref=e146]:
+              - heading "Educators" [level=2] [ref=e147]:
+                - link "Educators" [ref=e148] [cursor=pointer]:
+                  - /url: /en-us/get-started/educators
+              - list [ref=e149]:
+                - listitem [ref=e150]:
+                  - link "Lesson Library" [ref=e151] [cursor=pointer]:
+                    - /url: /en-us/resources/explore-lessons
+                - listitem [ref=e152]:
+                  - link "Educator training for Minecraft Education" [ref=e153] [cursor=pointer]:
+                    - /url: /en-us/resources/get-trained
+                    - text: Get Trained
+                - listitem [ref=e154]:
+                  - link "Learn to Play Minecraft Education" [ref=e155] [cursor=pointer]:
+                    - /url: https://www.youtube.com/playlist?list=PLg9lToc61ftpZjtoCJoPZ8gLyXVk1whOV
+                    - text: Learn to Play
+                - listitem [ref=e156]:
+                  - link "Join the Community" [ref=e157] [cursor=pointer]:
+                    - /url: /en-us/connect
+                - listitem [ref=e158]:
+                  - link "Research & Impact" [ref=e159] [cursor=pointer]:
+                    - /url: /en-us/discover/impact
+                - listitem [ref=e160]:
+                  - link "Teacher Academy" [ref=e161] [cursor=pointer]:
+                    - /url: https://docs.microsoft.com/training/modules/minecraft-intro-game-based-learning/
+                - listitem [ref=e162]:
+                  - link "Student Ambassadors" [ref=e163] [cursor=pointer]:
+                    - /url: https://docs.microsoft.com/training/paths/minecraft-student-ambassador-program/
+          - generic [ref=e164]:
+            - generic [ref=e165]:
+              - navigation "IT Admins and Minecraft Education" [ref=e166]:
+                - heading "IT Admins" [level=2] [ref=e167]:
+                  - link "IT Admins" [ref=e168] [cursor=pointer]:
+                    - /url: /en-us/get-started/it-admins
+                - list [ref=e169]:
+                  - listitem [ref=e170]:
+                    - link "How to buy Minecraft Education" [ref=e171] [cursor=pointer]:
+                      - /url: /en-us/licensing
+                      - text: How to Buy
+                  - listitem [ref=e172]:
+                    - link "Licensing for Minecraft Education" [ref=e173] [cursor=pointer]:
+                      - /url: /en-us/licensing
+                      - text: Licensing
+                  - listitem [ref=e174]:
+                    - link "Educator training for Minecraft Education" [ref=e175] [cursor=pointer]:
+                      - /url: /en-us/resources/get-trained
+                      - text: Educator Training
+              - navigation "Parents and Minecraft Education" [ref=e176]:
+                - heading "Parents" [level=2] [ref=e177]:
+                  - link "Parents" [ref=e178] [cursor=pointer]:
+                    - /url: /en-us/get-started/parents
+                - list [ref=e179]:
+                  - listitem [ref=e180]:
+                    - link "Getting started with Minecraft Education" [ref=e181] [cursor=pointer]:
+                      - /url: https://edusupport.minecraft.net/hc/en-us/articles/360047555191-Get-Started-with-the-Tutorial-World
+                      - text: Getting Started
+                  - listitem [ref=e182]:
+                    - link "Homeschools" [ref=e183] [cursor=pointer]:
+                      - /url: https://edusupport.minecraft.net/hc/articles/4415061129236-Purchasing-Minecraft-Education-Edition-for-Homeschooling-Family-use
+                  - listitem [ref=e184]:
+                    - link "How to Play Minecraft Education for parents" [ref=e185] [cursor=pointer]:
+                      - /url: /en-us/lessons/minecraft-for-parents
+                      - text: How to Play
+            - generic [ref=e186]:
+              - navigation "Download Minecraft Education" [ref=e187]:
+                - heading "Download" [level=2] [ref=e188]:
+                  - link "Download" [ref=e189] [cursor=pointer]:
+                    - /url: /en-us/get-started/download
+                - list [ref=e190]:
+                  - listitem [ref=e191]:
+                    - link "Windows download for Minecraft Education" [ref=e192] [cursor=pointer]:
+                      - /url: /en-us/get-started/download
+                      - text: Windows
+                  - listitem [ref=e193]:
+                    - link "ChromeOS download for Minecraft Education" [ref=e194] [cursor=pointer]:
+                      - /url: /en-us/get-started/download
+                      - text: ChromeOS
+                  - listitem [ref=e195]:
+                    - link "MacOS download for Minecraft Education" [ref=e196] [cursor=pointer]:
+                      - /url: /en-us/get-started/download
+                      - text: MacOS
+                  - listitem [ref=e197]:
+                    - link "iOS download for Minecraft Education" [ref=e198] [cursor=pointer]:
+                      - /url: /en-us/get-started/download
+                      - text: iOS
+              - navigation "Connect" [ref=e199]:
+                - heading "Connect" [level=2] [ref=e200]:
+                  - link "Connect" [ref=e201] [cursor=pointer]:
+                    - /url: https://edusupport.minecraft.net/hc/en-us/community/topics
+                - list [ref=e202]:
+                  - listitem [ref=e203]:
+                    - link "Become a Partner" [ref=e204] [cursor=pointer]:
+                      - /url: /en-us/get-started/partners
+                  - listitem [ref=e205]:
+                    - link "Support Center" [ref=e206] [cursor=pointer]:
+                      - /url: https://edusupport.minecraft.net/hc/en-us
+      - generic [ref=e209]:
+        - button "English (United States)" [ref=e212] [cursor=pointer]:
+          - img "globe" [ref=e213]
+          - generic [ref=e214]: English (United States)
+        - navigation "Microsoft corporate links" [ref=e217]:
+          - list [ref=e218]:
+            - listitem [ref=e219]:
+              - link "Contact us" [ref=e220] [cursor=pointer]:
+                - /url: https://aka.ms/MEEContactSupport
+                - text: Contact Us
+            - listitem [ref=e221]:
+              - link "Privacy and Cookies" [ref=e222] [cursor=pointer]:
+                - /url: https://go.microsoft.com/fwlink/?LinkId=521839
+            - listitem [ref=e223]:
+              - link "Terms of use for Minecraft Education" [ref=e224] [cursor=pointer]:
+                - /url: https://aka.ms/meeterms
+                - text: Terms of use
+            - listitem [ref=e225]:
+              - link "Trademarks" [ref=e226] [cursor=pointer]:
+                - /url: https://www.microsoft.com/trademarks
+            - listitem [ref=e227]:
+              - link "About our ads" [ref=e228] [cursor=pointer]:
+                - /url: https://choice.microsoft.com
+            - listitem [ref=e229]:
+              - link "© 2026 Microsoft" [ref=e230] [cursor=pointer]:
+                - /url: https://microsoft.com
+        - link "Microsoft" [ref=e233] [cursor=pointer]:
+          - /url: https://www.microsoft.com
+          - img "Microsoft" [ref=e234]
+  - 'dialog "Microsoft Survey: Give us your opinion" [active] [ref=e389]':
+    - document [ref=e390]:
+      - img "Minecraft Logo" [ref=e392]
+      - button "Close Survey Invite" [ref=e393] [cursor=pointer]:
+        - img "Close Survey Invite" [ref=e394]
+      - generic [ref=e395]:
+        - text: Minecraft is conducting an online survey to understand your opinions of the Education.Minecraft.net website. If you choose to participate, the online survey will be presented to you when you leave the website.
+        - text: Would you like to participate?
+        - paragraph [ref=e396]:
+          - button "Yes" [ref=e397] [cursor=pointer]
+          - button "No" [ref=e398] [cursor=pointer]
+      - img "Microsoft Logo" [ref=e400]
+      - link "Privacy Statement" [ref=e402] [cursor=pointer]:
+        - /url: https://go.microsoft.com/fwlink/?LinkId=521839

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "apprendre-minecraft",
+    "title": "Apprendre Minecraft",
+    "type": "World",
+    "description": "Thanks to the hard work of Stéphane Cloâtre, the Tutorial World is now available for French-speaking educators and stude",
+    "short_description": "Thanks to the hard work of Stéphane Cloâtre, the Tutorial World is now available for French-speaking educators and stude",
+    "url": "https://education.minecraft.net/worlds/apprendre-minecraft",
+    "thumbnail_url": null,
+    "crawled_at": "2026-02-26 10:00:00",
+    "last_updated": "2026-02-26T19:00:00.026410",
+    "is_active": 1,
+    "subjects": "Computer Science,Science,Arts & Design"
+  },
+  {
+    "id": "arctic-shipwreck",
+    "title": "Arctic Shipwreck",
+    "type": "World",
+    "description": "Wait, this doesn't make any sense! A coral reef, next to a shipwreck, next to some icebergs  Only in Minecraft can you f",
+    "short_description": "Wait, this doesn't make any sense! A coral reef, next to a shipwreck, next to some icebergs  Only in Minecraft can you f",
+    "url": "https://education.minecraft.net/worlds/arctic-shipwreck",
+    "thumbnail_url": null,
+    "crawled_at": "2026-02-26 10:00:00",
+    "last_updated": "2026-02-26T19:00:00.205758",
+    "is_active": 1,
+    "subjects": "Computer Science,Arts & Design"
+  },
+  {
+    "id": "back-to-school",
+    "title": "Back to school!",
+    "type": "World",
+    "description": "To help kids who are going back to school in a virtual environment, we've created a custom Minecraft world that provides",
+    "short_description": "To help kids who are going back to school in a virtual environment, we've created a custom Minecraft world that provides",
+    "url": "https://education.minecraft.net/worlds/back-to-school",
+    "thumbnail_url": null,
+    "crawled_at": "2026-02-26 10:00:00",
+    "last_updated": "2026-02-26T19:00:00.082658",
+    "is_active": 1,
+    "subjects": "Computer Science,Arts & Design"
+  },
+  {
+    "id": "beta-survival-spawn",
+    "title": "Beta Survival Spawn",
+    "type": "World",
+    "description": "In April of 2016, 163 brave educators signed up to be the very first users of Minecraft: Education Edition. As a side pr",
+    "short_description": "In April of 2016, 163 brave educators signed up to be the very first users of Minecraft: Education Edition. As a side pr",
+    "url": "https://education.minecraft.net/worlds/beta-survival-spawn",
+    "thumbnail_url": null,
+    "crawled_at": "2026-02-26 10:00:00",
+    "last_updated": "2026-02-26T19:00:00.050174",
+    "is_active": 1,
+    "subjects": "Arts & Design"
+  },
+  {
+    "id": "chemistry-lessons-in-spanish",
+    "title": "Chemistry Lessons | Spanish",
+    "type": "World",
+    "description": "Learning Objectives    \tIdentificar ejemplos de reacciones químicas que suceden en el mundo real y en Minecraft.  \tRefle",
+    "short_description": "Learning Objectives    \tIdentificar ejemplos de reacciones químicas que suceden en el mundo real y en Minecraft.  \tRefle",
+    "url": "https://education.minecraft.net/worlds/chemistry-lessons-in-spanish",
+    "thumbnail_url": null,
+    "crawled_at": "2026-02-26 10:00:00",
+    "last_updated": "2026-02-26T19:00:00.277970",
+    "is_active": 1,
+    "subjects": "Science,Arts & Design"
+  }
+]

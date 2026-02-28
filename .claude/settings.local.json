@@ -33,7 +33,14 @@
       "Bash(if not exist .streamlit mkdir .streamlit)",
       "Bash(git commit:*)",
       "WebSearch",
-      "Bash(python test_gemini_models.py:*)"
+      "Bash(python test_gemini_models.py:*)",
+      "Bash(python check_data.py:*)",
+      "Bash(python enhance_data.py:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_close",
+      "Bash(python enhance_data_v2.py:*)"
     ]
   }
 }
