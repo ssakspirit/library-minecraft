@@ -98,17 +98,37 @@ def extract_all_info(page, url):
         return None
 
 
-def enhance_resources(limit=10):
+def enhance_resources(limit=10, resume=False):
     """리소스 데이터 보강"""
     # 기존 데이터 로드
     with open('data/resources.json', 'r', encoding='utf-8') as f:
         resources = json.load(f)
 
-    print(f"📚 총 {len(resources)}개 리소스")
-    if limit:
-        print(f"🔍 처음 {limit}개만 처리합니다.\n")
-    else:
-        print(f"🔍 전체 {len(resources)}개를 처리합니다.\n")
+    # Resume 모드: 이미 처리된 데이터 확인
+    if resume:
+        try:
+            with open('data/resources_enhanced.json', 'r', encoding='utf-8') as f:
+                enhanced_data = json.load(f)
+
+            # 이미 처리된 리소스 찾기 (thumbnail_url이 있으면 처리됨)
+            processed_urls = {r['url'] for r in enhanced_data if r.get('thumbnail_url')}
+
+            print(f"📚 총 {len(resources)}개 리소스")
+            print(f"✅ 이미 처리됨: {len(processed_urls)}개")
+            print(f"⏳ 남은 작업: {len(resources) - len(processed_urls)}개\n")
+
+            # 기존 enhanced 데이터로 시작
+            resources = enhanced_data
+        except FileNotFoundError:
+            print("⚠️ Enhanced 파일이 없어 처음부터 시작합니다.\n")
+            resume = False
+
+    if not resume:
+        print(f"📚 총 {len(resources)}개 리소스")
+        if limit:
+            print(f"🔍 처음 {limit}개만 처리합니다.\n")
+        else:
+            print(f"🔍 전체 {len(resources)}개를 처리합니다.\n")
 
     # Playwright 시작
     with sync_playwright() as p:
@@ -131,10 +151,20 @@ def enhance_resources(limit=10):
         page = context.new_page()
 
         enhanced_count = 0
-        total_to_process = limit if limit else len(resources)
+        skipped_count = 0
 
-        for idx, resource in enumerate(resources[:limit], 1):
+        # Resume 모드에서는 전체 리소스, 아니면 limit만큼
+        resources_to_process = resources if (resume or limit is None) else resources[:limit]
+        total_to_process = len(resources_to_process)
+
+        for idx, resource in enumerate(resources_to_process, 1):
             url = resource['url']
+
+            # Resume 모드: 이미 처리된 리소스 건너뛰기
+            if resume and resource.get('thumbnail_url'):
+                skipped_count += 1
+                continue
+
             print(f"[{idx}/{total_to_process}] {resource['title'][:60]}")
             print(f"   URL: {url}")
 
@@ -181,7 +211,9 @@ def enhance_resources(limit=10):
 
     print("\n" + "=" * 60)
     print(f"✅ 완료!")
-    print(f"   처리: {limit}개")
+    if resume:
+        print(f"   건너뜀: {skipped_count}개 (이미 처리됨)")
+    print(f"   처리 시도: {total_to_process - skipped_count}개")
     print(f"   성공: {enhanced_count}개")
     print(f"   저장: data/resources_enhanced.json")
     print("=" * 60)
@@ -189,11 +221,19 @@ def enhance_resources(limit=10):
 
 if __name__ == "__main__":
     import sys
-    # 인자가 있으면 전체 크롤링, 없으면 10개만
-    if len(sys.argv) > 1 and sys.argv[1] == '--all':
-        print("🚀 전체 리소스 크롤링 시작 (1,123개)")
-        print("⏱️ 예상 소요 시간: 약 1.5시간")
-        print()
-        enhance_resources(limit=None)
+
+    # --resume 옵션 확인
+    resume = '--resume' in sys.argv
+
+    # --all 옵션 확인
+    if '--all' in sys.argv:
+        if resume:
+            print("🔄 중단된 크롤링 재개 (남은 리소스만 처리)")
+            print()
+        else:
+            print("🚀 전체 리소스 크롤링 시작 (1,123개)")
+            print("⏱️ 예상 소요 시간: 약 1.5시간")
+            print()
+        enhance_resources(limit=None, resume=resume)
     else:
-        enhance_resources(limit=10)
+        enhance_resources(limit=10, resume=False)
