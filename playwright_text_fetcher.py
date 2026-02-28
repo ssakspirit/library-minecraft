@@ -1,190 +1,175 @@
 """
-Playwright를 사용한 전체 텍스트 수집 (HTTP2 오류 우회)
+Playwright를 사용한 리소스 상세 정보 크롤링
+thumbnail_url, tags, ages, submitted_by, updated, available_languages 추출
 """
+import json
 import sys
 import io
-import asyncio
-import json
-from pathlib import Path
-from playwright.async_api import async_playwright
-from tqdm import tqdm
+from playwright.sync_api import sync_playwright
+import time
 
-# Fix Windows console encoding
+# Windows 콘솔 인코딩 설정
 if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 
-async def fetch_page_text(page, url: str, max_retries: int = 3) -> str:
-    """Playwright로 페이지 전체 텍스트 가져오기"""
+def extract_all_info(page, url):
+    """페이지에서 모든 필요한 정보 추출"""
+    try:
+        # 페이지 이동
+        page.goto(url, timeout=60000, wait_until='domcontentloaded')
+        time.sleep(3)
 
-    for attempt in range(max_retries):
-        try:
-            # Navigate with faster strategy
-            await page.goto(url, wait_until='domcontentloaded', timeout=15000)
+        # JavaScript로 모든 정보 추출
+        info = page.evaluate(r"""() => {
+            const data = {};
 
-            # Wait for content to load
-            await page.wait_for_timeout(2000)
+            // 1. 썸네일 이미지
+            const images = Array.from(document.querySelectorAll('img')).filter(img => {
+                const src = img.src;
+                return !src.includes('logo') &&
+                       !src.includes('icon') &&
+                       !src.includes('arrow') &&
+                       !src.includes('clientlib') &&
+                       img.naturalWidth > 200;
+            });
 
-            # Extract all text from the page
-            text = await page.evaluate("""
-                () => {
-                    // Remove unwanted elements
-                    const unwanted = document.querySelectorAll('script, style, nav, footer, header, .cookie-banner, .advertisement');
-                    unwanted.forEach(el => el.remove());
+            if (images.length > 0) {
+                const largestImg = images.sort((a, b) =>
+                    (b.naturalWidth * b.naturalHeight) - (a.naturalWidth * a.naturalHeight)
+                )[0];
+                data.thumbnail_url = largestImg ? largestImg.src : null;
+            }
 
-                    // Get main content if available
-                    const main = document.querySelector('main, article, .content, .main-content');
-                    const content = main || document.body;
+            // Open Graph 이미지 (백업)
+            const ogImage = document.querySelector('meta[property="og:image"]');
+            if (ogImage && !data.thumbnail_url) {
+                const ogUrl = ogImage.content;
+                data.thumbnail_url = ogUrl.startsWith('http') ? ogUrl : 'https://education.minecraft.net' + ogUrl;
+            }
 
-                    return content.innerText.trim();
+            // 2. 태그 추출
+            const bodyText = document.body.innerText;
+            const tags = [];
+
+            // "BuildCreative" 같은 연결된 태그 분리
+            const tagLine = bodyText.match(/\n([A-Z][a-z]+[A-Z][a-z]+)\n/);
+            if (tagLine) {
+                const combined = tagLine[1];
+                const separated = combined.split(/(?=[A-Z])/);
+                tags.push(...separated);
+            }
+
+            data.tags = [...new Set(tags)];
+
+            // 3. Ages
+            const agesMatch = bodyText.match(/ages?\s*(\d+[-–]\d+)/i);
+            if (agesMatch) data.ages = agesMatch[1];
+
+            // 4. Submitted by
+            const submittedMatch = bodyText.match(/Submitted by[:\s]*([^\n]+)/i);
+            if (submittedMatch) data.submitted_by = submittedMatch[1].trim();
+
+            // 5. Updated
+            const updatedMatch = bodyText.match(/Updated[:\s]*([^\n]+)/i);
+            if (updatedMatch) data.updated = updatedMatch[1].trim();
+
+            // 6. Available languages (첫 5개만)
+            const langMatch = bodyText.match(/Available languages?[:\s]*([^\n]+)/i);
+            if (langMatch) {
+                const langs = langMatch[1].trim();
+                if (langs.length > 100) {
+                    const langList = langs.match(/[A-Z][a-zäöüß]+/g) || [];
+                    data.available_languages = langList.slice(0, 5).join(', ');
+                    if (langList.length > 5) data.available_languages += ' ...';
+                } else {
+                    data.available_languages = langs;
                 }
-            """)
+            }
 
-            return text
+            return data;
+        }""")
 
-        except Exception as e:
-            if attempt < max_retries - 1:
-                print(f"\n⚠️  재시도 {attempt + 1}/{max_retries} for {url}")
-                await asyncio.sleep(2)
-            else:
-                print(f"\n❌ 실패: {url} - {str(e)[:100]}")
-                return ""
+        return info
 
-    return ""
+    except Exception as e:
+        print(f"   ❌ 오류: {str(e)[:100]}")
+        return None
 
 
-async def add_text_to_resources(input_path: Path, output_path: Path, limit: int = None):
-    """리소스에 전체 텍스트 추가"""
-
-    print("=" * 80)
-    print("🚀 Playwright 텍스트 수집 시작")
-    print("=" * 80)
-
-    # Load existing JSON
-    with open(input_path, 'r', encoding='utf-8') as f:
+def enhance_resources(limit=10):
+    """리소스 데이터 보강"""
+    # 기존 데이터 로드
+    with open('data/resources.json', 'r', encoding='utf-8') as f:
         resources = json.load(f)
 
-    print(f"\n📊 총 {len(resources)}개 리소스")
+    print(f"📚 총 {len(resources)}개 리소스")
+    print(f"🔍 처음 {limit}개만 처리합니다.\n")
 
-    if limit:
-        resources = resources[:limit]
-        print(f"   (처음 {limit}개만 처리)")
-
-    async with async_playwright() as p:
-        # Launch browser with custom settings to avoid HTTP2 issues
-        browser = await p.chromium.launch(
-            headless=True,
-            args=[
-                '--disable-http2',  # Disable HTTP2 to avoid protocol errors
-                '--disable-blink-features=AutomationControlled',
-                '--no-sandbox',
-            ]
+    # Playwright 시작
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False)
+        context = browser.new_context(
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         )
+        page = context.new_page()
 
-        context = await browser.new_context(
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            viewport={'width': 1920, 'height': 1080},
-            locale='en-US',
-        )
+        enhanced_count = 0
 
-        page = await context.new_page()
+        for idx, resource in enumerate(resources[:limit], 1):
+            url = resource['url']
+            print(f"[{idx}/{limit}] {resource['title'][:60]}")
+            print(f"   URL: {url}")
 
-        success_count = 0
-        error_count = 0
-        skip_count = 0
+            info = extract_all_info(page, url)
 
-        for i, resource in enumerate(tqdm(resources, desc="텍스트 수집")):
-            # Skip if already has text
-            if resource.get('text') and len(resource['text']) > 100:
-                skip_count += 1
-                continue
+            if info:
+                if info.get('thumbnail_url'):
+                    resource['thumbnail_url'] = info['thumbnail_url']
+                    print(f"   ✅ Thumbnail: {info['thumbnail_url'][:60]}...")
 
-            url = resource.get('url')
-            if not url:
-                error_count += 1
-                continue
+                if info.get('tags'):
+                    resource['tags'] = ', '.join(info['tags'])
+                    print(f"   ✅ Tags: {resource['tags']}")
 
-            # Fetch text
-            text = await fetch_page_text(page, url)
+                if info.get('ages'):
+                    resource['ages'] = info['ages']
+                    print(f"   ✅ Ages: {info['ages']}")
 
-            if text and len(text) > 100:  # Minimum 100 chars to be valid
-                resource['text'] = text
-                success_count += 1
+                if info.get('submitted_by'):
+                    resource['submitted_by'] = info['submitted_by']
+                    print(f"   ✅ Submitted by: {info['submitted_by']}")
 
-                # Show progress every 5 items
-                if (success_count) % 5 == 0:
-                    print(f"\n✅ {success_count}개 수집 완료 | 텍스트 길이 예시: {len(text)}자")
+                if info.get('updated'):
+                    resource['updated'] = info['updated']
+                    print(f"   ✅ Updated: {info['updated']}")
+
+                if info.get('available_languages'):
+                    resource['available_languages'] = info['available_languages']
+                    print(f"   ✅ Languages: {info['available_languages'][:50]}")
+
+                enhanced_count += 1
             else:
-                resource['text'] = ""
-                error_count += 1
+                print(f"   ⚠️ 정보 추출 실패")
 
-            # Small delay
-            await asyncio.sleep(1)
+            print()
+            time.sleep(2)
 
-            # Save progress every 10 items
-            if (i + 1) % 10 == 0:
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    json.dump(resources, f, ensure_ascii=False, indent=2)
-                print(f"\n💾 중간 저장 완료 ({i + 1}/{len(resources)})")
+        context.close()
+        browser.close()
 
-        await browser.close()
-
-    # Final save
-    with open(output_path, 'w', encoding='utf-8') as f:
+    # 저장
+    with open('data/resources_enhanced.json', 'w', encoding='utf-8') as f:
         json.dump(resources, f, ensure_ascii=False, indent=2)
 
-    print("\n" + "=" * 80)
-    print("✅ 완료!")
-    print("=" * 80)
-    print(f"성공: {success_count}개")
-    print(f"실패: {error_count}개")
-    print(f"건너뜀: {skip_count}개")
-    print(f"\n💾 저장 위치: {output_path}")
-
-    # Show sample
-    if success_count > 0:
-        print("\n📄 샘플 텍스트 (첫 번째 성공한 리소스):")
-        print("-" * 80)
-        sample = next((r for r in resources if r.get('text') and len(r['text']) > 100), None)
-        if sample:
-            print(f"제목: {sample['title']}")
-            print(f"URL: {sample['url']}")
-            print(f"텍스트 길이: {len(sample['text'])}자")
-            print(f"\n첫 500자:\n{sample['text'][:500]}...")
-
-
-async def main():
-    input_path = Path('data/resources.json')
-    output_path = Path('data/resources_with_text.json')
-
-    if not input_path.exists():
-        print(f"❌ 파일을 찾을 수 없습니다: {input_path}")
-        return
-
-    print("\n⚠️  주의사항:")
-    print("  - Playwright를 사용하여 JavaScript 콘텐츠를 수집합니다")
-    print("  - 1,123개 리소스를 모두 수집하면 약 20분 소요")
-    print("  - 중간에 중단해도 진행 상황이 저장됩니다\n")
-
-    # Get user input
-    user_input = input("몇 개를 수집하시겠습니까? (숫자 입력, 전체는 'all'): ").strip().lower()
-
-    if user_input == 'all':
-        limit = None
-        print(f"\n모든 리소스를 수집합니다...")
-    elif user_input.isdigit():
-        limit = int(user_input)
-        print(f"\n처음 {limit}개 리소스를 수집합니다...")
-    else:
-        print("취소되었습니다.")
-        return
-
-    try:
-        await add_text_to_resources(input_path, output_path, limit=limit)
-    except KeyboardInterrupt:
-        print("\n\n⚠️  중단되었습니다. 지금까지 수집한 데이터가 저장되었습니다.")
+    print("\n" + "=" * 60)
+    print(f"✅ 완료!")
+    print(f"   처리: {limit}개")
+    print(f"   성공: {enhanced_count}개")
+    print(f"   저장: data/resources_enhanced.json")
+    print("=" * 60)
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    enhance_resources(limit=10)
