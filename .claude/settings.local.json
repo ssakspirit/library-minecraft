@@ -40,7 +40,9 @@
       "mcp__playwright__browser_snapshot",
       "mcp__playwright__browser_evaluate",
       "mcp__playwright__browser_close",
-      "Bash(python enhance_data_v2.py:*)"
+      "Bash(python enhance_data_v2.py:*)",
+      "Bash(tasklist:*)",
+      "Bash(findstr:*)"
     ]
   }
 }

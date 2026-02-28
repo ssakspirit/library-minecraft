@@ -18,8 +18,8 @@ def extract_all_info(page, url):
     """페이지에서 모든 필요한 정보 추출"""
     try:
         # 페이지 이동
-        page.goto(url, timeout=60000, wait_until='domcontentloaded')
-        time.sleep(3)
+        page.goto(url, timeout=30000, wait_until='domcontentloaded')
+        time.sleep(2)  # 대기 시간 단축
 
         # JavaScript로 모든 정보 추출
         info = page.evaluate(r"""() => {
@@ -114,9 +114,19 @@ def enhance_resources(limit=10):
     with sync_playwright() as p:
         # 전체 크롤링 시 headless 모드, 테스트 시 브라우저 표시
         is_headless = (limit is None or limit > 50)
-        browser = p.chromium.launch(headless=is_headless)
+        browser = p.chromium.launch(
+            headless=is_headless,
+            args=[
+                '--disable-http2',
+                '--disable-blink-features=AutomationControlled',
+                '--no-sandbox',
+                '--disable-setuid-sandbox'
+            ]
+        )
         context = browser.new_context(
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            viewport={'width': 1920, 'height': 1080},
+            ignore_https_errors=True
         )
         page = context.new_page()
 
@@ -160,7 +170,7 @@ def enhance_resources(limit=10):
                 print(f"   ⚠️ 정보 추출 실패")
 
             print()
-            time.sleep(2)
+            time.sleep(1)  # 대기 시간 단축
 
         context.close()
         browser.close()
