@@ -42,7 +42,18 @@
       "mcp__playwright__browser_close",
       "Bash(python enhance_data_v2.py:*)",
       "Bash(tasklist:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(timeout /t 10)",
+      "Bash(ping:*)",
+      "Bash(powershell -Command \"\\(Get-Content 'C:\\\\Users\\\\ssaks\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-ssaks-OneDrive---main-0nowcoding-library-minecraft\\\\tasks\\\\b5af43f.output' -Raw\\).Length\":*)",
+      "Bash(python -u playwright_text_fetcher.py:*)",
+      "Bash(python simple_crawler.py:*)",
+      "Bash(python:*)",
+      "Bash(timeout /t 5)",
+      "Bash(powershell -Command \"\\(Get-Content ''C:\\\\Users\\\\ssaks\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-ssaks-OneDrive---main-0nowcoding-library-minecraft\\\\tasks\\\\ba6e6f0.output'' -Raw\\).Length\")",
+      "Bash(git checkout:*)",
+      "Bash(dir:*)",
+      "Bash(ls:*)"
     ]
   }
 }
