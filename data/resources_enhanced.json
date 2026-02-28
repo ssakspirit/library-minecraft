@@ -6,11 +6,14 @@
     "description": "Thanks to the hard work of Stéphane Cloâtre, the Tutorial World is now available for French-speaking educators and stude",
     "short_description": "Thanks to the hard work of Stéphane Cloâtre, the Tutorial World is now available for French-speaking educators and stude",
     "url": "https://education.minecraft.net/worlds/apprendre-minecraft",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Untitled-4.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.026410",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design"
+    "subjects": "Computer Science,Science,Arts & Design",
+    "tags": "Build, Survival",
+    "submitted_by": "Minecraft Education",
+    "updated": "5월 31, 2017"
   },
   {
     "id": "arctic-shipwreck",
@@ -19,11 +22,14 @@
     "description": "Wait, this doesn't make any sense! A coral reef, next to a shipwreck, next to some icebergs  Only in Minecraft can you f",
     "short_description": "Wait, this doesn't make any sense! A coral reef, next to a shipwreck, next to some icebergs  Only in Minecraft can you f",
     "url": "https://education.minecraft.net/worlds/arctic-shipwreck",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Arctic_Shipwreck.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.205758",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design"
+    "subjects": "Computer Science,Arts & Design",
+    "tags": "Template, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "6월 10, 2018"
   },
   {
     "id": "back-to-school",
@@ -32,11 +38,14 @@
     "description": "To help kids who are going back to school in a virtual environment, we've created a custom Minecraft world that provides",
     "short_description": "To help kids who are going back to school in a virtual environment, we've created a custom Minecraft world that provides",
     "url": "https://education.minecraft.net/worlds/back-to-school",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Back-To-School-image.jpg",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.082658",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design"
+    "subjects": "Computer Science,Arts & Design",
+    "tags": "Build, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "BACK TO SCHOOL!"
   },
   {
     "id": "beta-survival-spawn",
@@ -45,11 +54,14 @@
     "description": "In April of 2016, 163 brave educators signed up to be the very first users of Minecraft: Education Edition. As a side pr",
     "short_description": "In April of 2016, 163 brave educators signed up to be the very first users of Minecraft: Education Edition. As a side pr",
     "url": "https://education.minecraft.net/worlds/beta-survival-spawn",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Beta-Survival-Spawn-1.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.050174",
     "is_active": 1,
-    "subjects": "Arts & Design"
+    "subjects": "Arts & Design",
+    "tags": "Build, Survival",
+    "submitted_by": "Minecraft Education",
+    "updated": "5월 8, 2017"
   },
   {
     "id": "chemistry-lessons-in-spanish",
@@ -58,11 +70,14 @@
     "description": "Learning Objectives    \tIdentificar ejemplos de reacciones químicas que suceden en el mundo real y en Minecraft.  \tRefle",
     "short_description": "Learning Objectives    \tIdentificar ejemplos de reacciones químicas que suceden en el mundo real y en Minecraft.  \tRefle",
     "url": "https://education.minecraft.net/worlds/chemistry-lessons-in-spanish",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Sin-t%C3%ADtulo-1.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.277970",
     "is_active": 1,
-    "subjects": "Science,Arts & Design"
+    "subjects": "Science,Arts & Design",
+    "tags": "Build, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "4월 5, 2018"
   },
   {
     "id": "code-builder-tutorial",
@@ -71,11 +86,14 @@
     "description": "Start coding in Minecraft! Use this tutorial to learn the basics of how to use CodeBuilder. You'll use the Agent (your r",
     "short_description": "Start coding in Minecraft! Use this tutorial to learn the basics of how to use CodeBuilder. You'll use the Agent (your r",
     "url": "https://education.minecraft.net/worlds/code-builder-tutorial",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/mee-new-logo.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.197694",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design"
+    "subjects": "Computer Science,Arts & Design",
+    "tags": "Template, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "2월 2, 2026"
   },
   {
     "id": "financial-literacy-world",
@@ -84,11 +102,14 @@
     "description": "This world was created by Fair Chance Learning to support lessons in financial literacy. Students are free to explore ar",
     "short_description": "This world was created by Fair Chance Learning to support lessons in financial literacy. Students are free to explore ar",
     "url": "https://education.minecraft.net/worlds/financial-literacy-world",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Financial-Literacy-World-OG.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.269273",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design,Language Arts"
+    "subjects": "Computer Science,Arts & Design,Language Arts",
+    "tags": "Build, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "1월 8, 2021"
   },
   {
     "id": "fluffletopolis",
@@ -97,11 +118,14 @@
     "description": "Special thanks to the team at Shapescape for bringing Cole's story to life! See the team's incredible cinematic on YouTu",
     "short_description": "Special thanks to the team at Shapescape for bringing Cole's story to life! See the team's incredible cinematic on YouTu",
     "url": "https://education.minecraft.net/worlds/fluffletopolis",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Fluffle_1.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.034035",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design,Language Arts"
+    "subjects": "Computer Science,Science,Arts & Design,Language Arts",
+    "tags": "Build, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "8월 26, 2017"
   },
   {
     "id": "graduation-celebration",
@@ -110,11 +134,14 @@
     "description": "To help schools holding virtual graduations and other events, we've created a custom Minecraft world that provides a fun",
     "short_description": "To help schools holding virtual graduations and other events, we've created a custom Minecraft world that provides a fun",
     "url": "https://education.minecraft.net/worlds/graduation-celebration",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Option-2.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.145578",
     "is_active": 1,
-    "subjects": "Arts & Design"
+    "subjects": "Arts & Design",
+    "tags": "Template, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "GRADUATION CELEBRATION"
   },
   {
     "id": "ice-spikes",
@@ -123,11 +150,14 @@
     "description": "Download of the Ice Spikes Biome.",
     "short_description": "Download of the Ice Spikes Biome.",
     "url": "https://education.minecraft.net/worlds/ice-spikes",
-    "thumbnail_url": null,
+    "thumbnail_url": "https://education.minecraft.net/WorldImages/Ice-Spikes-Biome.png",
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.230560",
     "is_active": 1,
-    "subjects": "General"
+    "subjects": "General",
+    "tags": "Biome, Creative",
+    "submitted_by": "Minecraft Education",
+    "updated": "5월 5, 2017"
   },
   {
     "id": "into-the-great-trench",
@@ -140,7 +170,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.294025",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design,Language Arts"
+    "subjects": "Computer Science,Science,Arts & Design,Language Arts",
+    "tags": "Build, Creative"
   },
   {
     "id": "ireland-2066-mindrising-2016",
@@ -153,7 +184,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.261687",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design,Language Arts,Mathematics"
+    "subjects": "Computer Science,Arts & Design,Language Arts,Mathematics",
+    "tags": "Build, Creative"
   },
   {
     "id": "lantern-shores",
@@ -166,7 +198,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.138676",
     "is_active": 1,
-    "subjects": "Science,Arts & Design"
+    "subjects": "Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "les-epreuves-de-lagent",
@@ -179,7 +212,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.113903",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design"
+    "subjects": "Computer Science,Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "les-lecons-de-chimie",
@@ -205,7 +239,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.188816",
     "is_active": 1,
-    "subjects": "Social Studies,Arts & Design,Language Arts,Mathematics"
+    "subjects": "Social Studies,Arts & Design,Language Arts,Mathematics",
+    "tags": "Template, Creative"
   },
   {
     "id": "medieval-minecraft",
@@ -218,7 +253,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.286364",
     "is_active": 1,
-    "subjects": "Computer Science,Social Studies,Arts & Design"
+    "subjects": "Computer Science,Social Studies,Arts & Design",
+    "tags": "Build, Creative"
   },
   {
     "id": "mesa-canyon",
@@ -244,7 +280,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.105724",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design,Language Arts"
+    "subjects": "Computer Science,Arts & Design,Language Arts",
+    "tags": "Build, Survival"
   },
   {
     "id": "molcraft",
@@ -257,7 +294,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.253593",
     "is_active": 1,
-    "subjects": "Science,Arts & Design"
+    "subjects": "Science,Arts & Design",
+    "tags": "Template, Survival"
   },
   {
     "id": "monument-zone",
@@ -270,7 +308,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.303940",
     "is_active": 1,
-    "subjects": "Computer Science,Science"
+    "subjects": "Computer Science,Science",
+    "tags": "Template, Creative"
   },
   {
     "id": "nga-motu-the-islands",
@@ -283,7 +322,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.121850",
     "is_active": 1,
-    "subjects": "Computer Science,Social Studies,SEL / Wellness,Arts & Design,Language Arts"
+    "subjects": "Computer Science,Social Studies,SEL / Wellness,Arts & Design,Language Arts",
+    "tags": "Template, Creative"
   },
   {
     "id": "ravine-village",
@@ -296,7 +336,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.130520",
     "is_active": 1,
-    "subjects": "Science,SEL / Wellness,Arts & Design,Language Arts"
+    "subjects": "Science,SEL / Wellness,Arts & Design,Language Arts",
+    "tags": "Build, Creative"
   },
   {
     "id": "redstone-breakout",
@@ -309,7 +350,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.090964",
     "is_active": 1,
-    "subjects": "Social Studies,SEL / Wellness,Arts & Design"
+    "subjects": "Social Studies,SEL / Wellness,Arts & Design",
+    "tags": "Build, Creative"
   },
   {
     "id": "redstone-lodge",
@@ -322,7 +364,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.065589",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design"
+    "subjects": "Computer Science,Science,Arts & Design",
+    "tags": "Build, Creative"
   },
   {
     "id": "secret-reef",
@@ -335,7 +378,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.007813",
     "is_active": 1,
-    "subjects": "General"
+    "subjects": "General",
+    "tags": "Build, Creative"
   },
   {
     "id": "settings-for-stories",
@@ -348,7 +392,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.153626",
     "is_active": 1,
-    "subjects": "Arts & Design,Language Arts,General"
+    "subjects": "Arts & Design,Language Arts,General",
+    "tags": "Template, Creative"
   },
   {
     "id": "small-south-africa",
@@ -361,7 +406,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.017457",
     "is_active": 1,
-    "subjects": "Science,Social Studies,SEL / Wellness,Arts & Design,Mathematics"
+    "subjects": "Science,Social Studies,SEL / Wellness,Arts & Design,Mathematics",
+    "tags": "Build, Creative"
   },
   {
     "id": "starter-town",
@@ -374,7 +420,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.237235",
     "is_active": 1,
-    "subjects": "Computer Science,Social Studies,SEL / Wellness,Arts & Design"
+    "subjects": "Computer Science,Social Studies,SEL / Wellness,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "sustainability-city",
@@ -400,7 +447,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.057769",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design"
+    "subjects": "Computer Science,Science,Arts & Design",
+    "tags": "Build, Creative"
   },
   {
     "id": "the-agent-trials-in-spanish",
@@ -413,7 +461,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.245363",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design"
+    "subjects": "Computer Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "the-human-eye",
@@ -426,7 +475,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.098070",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design,Career / STEM"
+    "subjects": "Computer Science,Science,Arts & Design,Career / STEM",
+    "tags": "Build, Creative"
   },
   {
     "id": "world-of-chemistry",
@@ -439,7 +489,8 @@
     "crawled_at": "2026-02-26 10:00:00",
     "last_updated": "2026-02-26T19:00:00.073924",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design"
+    "subjects": "Computer Science,Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "akil-oyunlari-parki",
@@ -465,7 +516,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.925579",
     "is_active": 1,
-    "subjects": "Arts & Design,Language Arts"
+    "subjects": "Arts & Design,Language Arts",
+    "tags": "Build, Survival"
   },
   {
     "id": "anitkabir",
@@ -517,7 +569,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.910156",
     "is_active": 1,
-    "subjects": "Arts & Design,Language Arts"
+    "subjects": "Arts & Design,Language Arts",
+    "tags": "Build, Survival"
   },
   {
     "id": "black-lives-matter",
@@ -543,7 +596,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.950021",
     "is_active": 1,
-    "subjects": "Computer Science,Arts & Design"
+    "subjects": "Computer Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "build-with-bees",
@@ -556,7 +610,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.895283",
     "is_active": 1,
-    "subjects": "Science,Arts & Design"
+    "subjects": "Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "build-with-bees-pollination",
@@ -608,7 +663,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.886955",
     "is_active": 1,
-    "subjects": "Science,Arts & Design"
+    "subjects": "Science,Arts & Design",
+    "tags": "Template, Creative"
   },
   {
     "id": "coding-assessment-world",
@@ -686,7 +742,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.991305",
     "is_active": 1,
-    "subjects": "Science,Arts & Design"
+    "subjects": "Science,Arts & Design",
+    "tags": "Build, Creative"
   },
   {
     "id": "cultura-afro-brasileira",
@@ -764,7 +821,8 @@
     "crawled_at": "2026-02-26 09:59:59",
     "last_updated": "2026-02-26T18:59:59.974614",
     "is_active": 1,
-    "subjects": "Computer Science,Science,Arts & Design,Language Arts,General,Mathematics"
+    "subjects": "Computer Science,Science,Arts & Design,Language Arts,General,Mathematics",
+    "tags": "Build, Creative"
   },
   {
     "id": "goods-and-services-simulation",

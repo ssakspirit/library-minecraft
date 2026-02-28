@@ -59,7 +59,7 @@ def main():
     print()
 
     # 데이터 로드
-    with open('data/resources_complete.json', 'r', encoding='utf-8') as f:
+    with open('data/resources_enhanced.json', 'r', encoding='utf-8') as f:
         resources = json.load(f)
 
     # 태그 누락 리소스 찾기
@@ -111,14 +111,14 @@ def main():
 
             # 10개마다 저장
             if (success_count + failed_count) % 10 == 0:
-                with open('data/resources_complete.json', 'w', encoding='utf-8') as f:
+                with open('data/resources_enhanced.json', 'w', encoding='utf-8') as f:
                     json.dump(resources, f, ensure_ascii=False, indent=2)
                 print(f"  💾 Auto-saved")
 
         browser.close()
 
     # 최종 저장
-    with open('data/resources_complete.json', 'w', encoding='utf-8') as f:
+    with open('data/resources_enhanced.json', 'w', encoding='utf-8') as f:
         json.dump(resources, f, ensure_ascii=False, indent=2)
 
     elapsed = time.time() - start_time
@@ -135,7 +135,7 @@ def main():
     print()
     print(f"Total progress: {len(resources) - len(missing_tags) + success_count}/{len(resources)} ({((len(resources) - len(missing_tags) + success_count) * 100) // len(resources)}%)")
     print()
-    print(f"💾 Saved to: data/resources_complete.json")
+    print(f"💾 Saved to: data/resources_enhanced.json")
     print()
 
 
