@@ -7,6 +7,7 @@ Minecraft Education 웹사이트의 모든 교육 리소스를 크롤링하여 �
 - [기능](#기능)
 - [설치](#설치)
 - [사용법](#사용법)
+- [데이터 업데이트](#데이터-업데이트)
 - [데이터 구조](#데이터-구조)
 - [활용 방안](#활용-방안)
 
@@ -87,6 +88,32 @@ with MinecraftEducationDB() as db:
     stats = db.get_statistics()
     print(stats)
 ```
+
+## 🔄 데이터 업데이트
+
+### 자동 업데이트 (GitHub Actions)
+
+매주 일요일 오전 12시(UTC)에 자동으로 실행되어 누락된 데이터를 크롤링합니다.
+
+**수동 실행:**
+1. GitHub 저장소 → **Actions** 탭
+2. **Update Minecraft Education Resources** 선택
+3. **Run workflow** 클릭
+
+### 로컬 업데이트
+
+```bash
+# 50개 리소스 크롤링 (기본)
+python update_data.py
+
+# 배치 크기 조정
+BATCH_SIZE=100 python update_data.py
+
+# 실패한 리소스만 재시도
+python retry_crawler.py
+```
+
+**상세 가이드:** [UPDATE_DATA.md](UPDATE_DATA.md)
 
 ## 📊 데이터 구조
 
