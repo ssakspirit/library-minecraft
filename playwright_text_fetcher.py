@@ -105,21 +105,27 @@ def enhance_resources(limit=10):
         resources = json.load(f)
 
     print(f"📚 총 {len(resources)}개 리소스")
-    print(f"🔍 처음 {limit}개만 처리합니다.\n")
+    if limit:
+        print(f"🔍 처음 {limit}개만 처리합니다.\n")
+    else:
+        print(f"🔍 전체 {len(resources)}개를 처리합니다.\n")
 
     # Playwright 시작
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        # 전체 크롤링 시 headless 모드, 테스트 시 브라우저 표시
+        is_headless = (limit is None or limit > 50)
+        browser = p.chromium.launch(headless=is_headless)
         context = browser.new_context(
             user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         )
         page = context.new_page()
 
         enhanced_count = 0
+        total_to_process = limit if limit else len(resources)
 
         for idx, resource in enumerate(resources[:limit], 1):
             url = resource['url']
-            print(f"[{idx}/{limit}] {resource['title'][:60]}")
+            print(f"[{idx}/{total_to_process}] {resource['title'][:60]}")
             print(f"   URL: {url}")
 
             info = extract_all_info(page, url)
@@ -172,4 +178,12 @@ def enhance_resources(limit=10):
 
 
 if __name__ == "__main__":
-    enhance_resources(limit=10)
+    import sys
+    # 인자가 있으면 전체 크롤링, 없으면 10개만
+    if len(sys.argv) > 1 and sys.argv[1] == '--all':
+        print("🚀 전체 리소스 크롤링 시작 (1,123개)")
+        print("⏱️ 예상 소요 시간: 약 1.5시간")
+        print()
+        enhance_resources(limit=None)
+    else:
+        enhance_resources(limit=10)
