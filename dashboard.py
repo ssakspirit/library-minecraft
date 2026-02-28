@@ -65,9 +65,15 @@ st.markdown("""
 @st.cache_data
 def load_data():
     """데이터 로드 (캐시됨)"""
+    # Enhanced 데이터 우선 사용
+    enhanced_path = Path('data/resources_enhanced.json')
     json_path = Path('data/resources.json')
 
-    if json_path.exists():
+    if enhanced_path.exists():
+        with open(enhanced_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return pd.DataFrame(data)
+    elif json_path.exists():
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         return pd.DataFrame(data)
@@ -150,17 +156,36 @@ def create_subject_chart(stats, top_n=10):
 
 
 def display_resource_card(resource):
-    """리소스 카드 표시"""
+    """리소스 카드 표시 (썸네일, 태그, 날짜 포함)"""
     type_badge_class = f"badge badge-{resource['type'].lower()}"
 
+    # 과목 배지
     subjects = resource.get('subjects', '')
     subject_badges = ""
     if subjects:
-        for subject in subjects.split(',')[:3]:  # 최대 3개만 표시
+        for subject in subjects.split(',')[:3]:
             subject_badges += f'<span class="badge" style="background: #E8F5E9; color: #2E7D32;">{subject.strip()}</span>'
+
+    # 태그 배지
+    tags = resource.get('tags', '')
+    tag_badges = ""
+    if tags:
+        for tag in tags.split(',')[:3]:
+            tag_badges += f'<span class="badge" style="background: #FFF3E0; color: #E65100;">{tag.strip()}</span>'
+
+    # 썸네일 이미지
+    thumbnail_url = resource.get('thumbnail_url', '')
+    thumbnail_html = ""
+    if thumbnail_url and thumbnail_url != 'None':
+        thumbnail_html = f'<img src="{thumbnail_url}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;" />'
+
+    # 업데이트 날짜
+    updated = resource.get('updated', '')
+    updated_html = f'<div style="color: #999; font-size: 0.85rem; margin-top: 0.5rem;">📅 Updated: {updated}</div>' if updated else ''
 
     card_html = f"""
     <div class="resource-card">
+        {thumbnail_html}
         <div class="resource-title">
             <span class="{type_badge_class}">{resource['type']}</span>
             {resource['title']}
@@ -168,8 +193,10 @@ def display_resource_card(resource):
         <p style="color: #666; margin: 0.5rem 0;">{resource.get('description', '')[:200]}...</p>
         <div style="margin-top: 0.5rem;">
             {subject_badges}
+            {tag_badges}
         </div>
-        <a href="{resource['url']}" target="_blank" style="color: #1976D2; text-decoration: none;">
+        {updated_html}
+        <a href="{resource['url']}" target="_blank" style="color: #1976D2; text-decoration: none; display: inline-block; margin-top: 0.5rem;">
             🔗 View Resource
         </a>
     </div>
@@ -388,10 +415,23 @@ def main():
             default=[]
         )
 
+        # 태그 필터
+        all_tags = set()
+        for tags_str in df['tags'].dropna():
+            if tags_str:
+                all_tags.update([tag.strip() for tag in str(tags_str).split(',')])
+        all_tags = sorted(list(all_tags))
+
+        tag_filter = st.sidebar.multiselect(
+            "태그 선택",
+            options=all_tags,
+            default=[]
+        )
+
         # 정렬
         sort_by = st.sidebar.selectbox(
             "정렬 기준",
-            options=["최신순", "제목순", "타입순"]
+            options=["최신순", "제목순", "타입순", "업데이트 날짜순"]
         )
 
         # 데이터 필터링
@@ -408,13 +448,21 @@ def main():
             )
             filtered_df = filtered_df[mask]
 
+        # 태그 필터 적용
+        if tag_filter:
+            mask = filtered_df['tags'].apply(
+                lambda x: any(tag in str(x) for tag in tag_filter) if pd.notna(x) else False
+            )
+            filtered_df = filtered_df[mask]
+
         # 검색 필터 적용
         if search_query:
             search_lower = search_query.lower()
             mask = (
                 filtered_df['title'].str.lower().str.contains(search_lower, na=False) |
                 filtered_df['description'].str.lower().str.contains(search_lower, na=False) |
-                filtered_df['subjects'].str.lower().str.contains(search_lower, na=False)
+                filtered_df['subjects'].str.lower().str.contains(search_lower, na=False) |
+                filtered_df['tags'].str.lower().str.contains(search_lower, na=False)
             )
             filtered_df = filtered_df[mask]
 
@@ -423,6 +471,12 @@ def main():
             filtered_df = filtered_df.sort_values('title')
         elif sort_by == "타입순":
             filtered_df = filtered_df.sort_values('type')
+        elif sort_by == "업데이트 날짜순":
+            # updated 컬럼이 있으면 정렬
+            if 'updated' in filtered_df.columns:
+                filtered_df = filtered_df.sort_values('updated', ascending=False, na_position='last')
+            else:
+                filtered_df = filtered_df.sort_values('crawled_at', ascending=False)
         else:  # 최신순
             filtered_df = filtered_df.sort_values('crawled_at', ascending=False)
 
