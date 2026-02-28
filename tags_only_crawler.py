@@ -1,6 +1,6 @@
 """
-태그 전용 크롤러 - Playwright로 category-box-list만 추출
-resources_complete.json의 태그 누락 리소스만 크롤링
+완전 크롤러 - Playwright로 썸네일과 태그 모두 추출
+resources_enhanced.json의 누락된 데이터만 크롤링
 """
 import json
 import time
@@ -18,8 +18,8 @@ if sys.platform == 'win32':
 BATCH_SIZE = int(os.getenv('BATCH_SIZE', '50'))
 
 
-def extract_tags(page, url, retries=2):
-    """태그만 추출"""
+def extract_data(page, url, retries=2):
+    """썸네일과 태그 추출"""
     for attempt in range(retries):
         try:
             page.goto(url, timeout=20000, wait_until='domcontentloaded')
@@ -33,20 +33,55 @@ def extract_tags(page, url, retries=2):
                 return {'success': False, 'error': str(e)[:100], 'url': url}
 
     try:
-        # JavaScript로 태그 추출 - category-box-list 사용
-        tags_data = page.evaluate("""() => {
+        # JavaScript로 모든 정보 추출
+        data = page.evaluate("""() => {
+            const result = {};
+
+            // 제목
+            const h1 = document.querySelector('h1');
+            if (h1) result.title = h1.textContent.trim();
+
+            // 썸네일 - meta 태그에서 추출
+            const ogImage = document.querySelector('meta[property="og:image"]');
+            const twitterImage = document.querySelector('meta[name="twitter:image"]');
+            const metaImage = ogImage?.content || twitterImage?.content;
+
+            if (metaImage) {
+                if (metaImage.startsWith('/')) {
+                    result.thumbnail_url = 'https://education.minecraft.net' + metaImage;
+                } else if (metaImage.startsWith('http')) {
+                    result.thumbnail_url = metaImage;
+                } else {
+                    result.thumbnail_url = 'https://education.minecraft.net/' + metaImage;
+                }
+            }
+
+            // 태그 - category-box-list
             const ul = document.querySelector('ul.category-box-list');
             if (ul) {
                 const items = Array.from(ul.querySelectorAll('li.item'));
-                return items.map(li => li.textContent.trim()).filter(t => t);
+                const tags = items.map(li => li.textContent.trim()).filter(t => t);
+                if (tags.length > 0) {
+                    result.tags = tags;
+                }
             }
-            return null;
+
+            // Submitted by
+            const bodyText = document.body.innerText;
+            const submittedText = bodyText.match(/Submitted by[:\s]*([^\n]+)/i);
+            if (submittedText) result.submitted_by = submittedText[1].trim();
+
+            // Updated
+            const updatedText = bodyText.match(/Updated[:\s]*([^\n]+)/i);
+            if (updatedText) result.updated = updatedText[1].trim();
+
+            return result;
         }""")
 
-        if tags_data:
-            return {'success': True, 'tags': tags_data, 'url': url}
+        if data and len(data) > 0:
+            return {'success': True, 'data': data, 'url': url}
         else:
-            return {'success': False, 'error': 'No category-box-list found', 'url': url}
+            return {'success': False, 'error': 'No data found', 'url': url}
 
     except Exception as e:
         return {'success': False, 'error': str(e)[:100], 'url': url}
@@ -54,7 +89,7 @@ def extract_tags(page, url, retries=2):
 
 def main():
     print("=" * 70)
-    print("🏷️  Tags-Only Crawler - Playwright with category-box-list")
+    print("🕷️  Complete Crawler - Thumbnail, Tags, Submitted, Updated")
     print("=" * 70)
     print()
 
@@ -96,12 +131,31 @@ def main():
 
             print(f"[{success_count + failed_count + 1}/{len(batch)}] {title}")
 
-            result = extract_tags(page, url)
+            result = extract_data(page, url)
 
             if result['success']:
-                tags = result['tags']
-                resources[idx]['tags'] = ', '.join(tags)
-                print(f"  ✅ Tags: {', '.join(tags)}")
+                data = result['data']
+
+                # 모든 추출된 정보 저장
+                if data.get('title'):
+                    resources[idx]['title'] = data['title']
+
+                if data.get('thumbnail_url'):
+                    resources[idx]['thumbnail_url'] = data['thumbnail_url']
+                    print(f"  ✅ Thumbnail")
+
+                if data.get('tags'):
+                    resources[idx]['tags'] = ', '.join(data['tags'])
+                    print(f"  ✅ Tags: {', '.join(data['tags'])}")
+
+                if data.get('submitted_by'):
+                    resources[idx]['submitted_by'] = data['submitted_by']
+                    print(f"  ✅ Submitted by: {data['submitted_by']}")
+
+                if data.get('updated'):
+                    resources[idx]['updated'] = data['updated']
+                    print(f"  ✅ Updated: {data['updated']}")
+
                 success_count += 1
             else:
                 print(f"  ❌ {result.get('error', 'Unknown error')}")
