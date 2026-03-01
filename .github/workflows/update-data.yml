@@ -1,76 +1,124 @@
-name: Update Minecraft Education Resources
+name: 🕷️ Crawl Minecraft Education Resources
 
 on:
-  # 매주 일요일 오전 12시 (UTC) 실행
+  # 매주 일요일 오전 3시 (UTC) 자동 실행
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '0 3 * * 0'
 
-  # 수동 실행 가능
+  # ✅ 원클릭 수동 실행
   workflow_dispatch:
     inputs:
+      mode:
+        description: '크롤링 모드'
+        required: true
+        default: 'default'
+        type: choice
+        options:
+          - default   # 누락된 데이터만
+          - retry     # 실패한 리소스만
+          - full      # 전체 재크롤링
       batch_size:
-        description: 'Number of resources to crawl (default: 50)'
+        description: '크롤링 개수 (0=전체)'
         required: false
-        default: '50'
+        default: '0'
+      delay:
+        description: '요청 간 딜레이 (초)'
+        required: false
+        default: '5'
 
 jobs:
-  update-data:
+  crawl:
     runs-on: ubuntu-latest
+    timeout-minutes: 180  # 최대 3시간
 
     steps:
-      - name: Checkout repository
+      - name: 📦 Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: 🐍 Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: 📥 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install playwright
 
-      - name: Install Playwright browsers
+      - name: 🌐 Install Playwright browsers
         run: |
           python -m playwright install chromium
           python -m playwright install-deps chromium
 
-      - name: Run update script
-        env:
-          BATCH_SIZE: ${{ github.event.inputs.batch_size || '50' }}
+      - name: 🕷️ Run crawler
         run: |
-          python update_data.py
+          MODE="${{ github.event.inputs.mode || 'default' }}"
+          BATCH="${{ github.event.inputs.batch_size || '0' }}"
+          DELAY="${{ github.event.inputs.delay || '5' }}"
 
-      - name: Check for changes
+          CMD="python crawl.py --headless --delay $DELAY --batch $BATCH --rest-interval 15 --rest-duration 45"
+
+          if [ "$MODE" = "full" ]; then
+            CMD="$CMD --full"
+          elif [ "$MODE" = "retry" ]; then
+            CMD="$CMD --retry"
+          fi
+
+          echo "🕷️ Running: $CMD"
+          $CMD
+
+      - name: 📊 Check for changes
         id: git-check
         run: |
           git diff --exit-code data/resources_enhanced.json || echo "changed=true" >> $GITHUB_OUTPUT
 
-      - name: Commit and push if changed
+      - name: 💾 Commit and push
         if: steps.git-check.outputs.changed == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/resources_enhanced.json
-          git commit -m "🤖 Auto-update: Crawled resources (batch size: ${{ github.event.inputs.batch_size || '50' }})
+          git add data/resources_enhanced.json data/crawl_failed.json
+          git commit -m "🤖 Auto-crawl: ${{ github.event.inputs.mode || 'default' }} mode
 
-          Updated Minecraft Education resource data.
-
-          🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-          Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+          Crawled Minecraft Education resources.
+          Mode: ${{ github.event.inputs.mode || 'default' }}
+          Batch: ${{ github.event.inputs.batch_size || '0' }}
+          Delay: ${{ github.event.inputs.delay || '5' }}s"
           git push
 
-      - name: Summary
+      - name: 📎 Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crawl-logs
+          path: |
+            crawl.log
+            data/crawl_failed.json
+          retention-days: 7
+
+      - name: 📋 Summary
         if: always()
         run: |
-          echo "## Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "## 🕷️ Crawl Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Setting | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Mode | \`${{ github.event.inputs.mode || 'default' }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Batch | \`${{ github.event.inputs.batch_size || '0' }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Delay | \`${{ github.event.inputs.delay || '5' }}s\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
           if [ "${{ steps.git-check.outputs.changed }}" == "true" ]; then
-            echo "✅ Data updated and pushed to repository" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **Data updated and pushed to repository**" >> $GITHUB_STEP_SUMMARY
           else
             echo "ℹ️ No changes detected" >> $GITHUB_STEP_SUMMARY
           fi
+
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Streamlit Cloud will automatically redeploy with the new data." >> $GITHUB_STEP_SUMMARY
+
+          if [ -f crawl.log ]; then
+            echo "### Last 20 lines of crawl.log" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -20 crawl.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
